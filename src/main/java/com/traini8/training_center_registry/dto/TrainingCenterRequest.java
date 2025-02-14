@@ -2,16 +2,33 @@ package com.traini8.training_center_registry.dto;
 
 import java.util.List;
 import lombok.Data;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 
 @Data
-
 public class TrainingCenterRequest {
+    @NotBlank(message = "Center name is required")
+    @Size(max = 40, message = "Center name must be less than 40 characters")
     private String centerName;
+
+    @NotBlank(message = "Center code is required")
+    @Pattern(regexp = "^[A-Za-z0-9]{12}$", message = "Center code must be exactly 12 alphanumeric characters")
     private String centerCode;
+
+    @NotNull(message = "Address is required")
+    @Valid
     private AddressDto address;
+
+    @Min(value = 1, message = "Student capacity must be greater than 0")
     private Integer studentCapacity;
+
     private List<String> coursesOffered;
+
+    @Email(message = "Invalid email format")
     private String contactEmail;
+
+    @NotBlank(message = "Contact phone is required")
+    @Pattern(regexp = "^\\d{10}$", message = "Phone number must be a valid 10 digit number")
     private String contactPhone;
 
     public TrainingCenterRequest() {

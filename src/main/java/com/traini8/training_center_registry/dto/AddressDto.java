@@ -1,12 +1,20 @@
 package com.traini8.training_center_registry.dto;
 
 import lombok.Data;
+import jakarta.validation.constraints.NotBlank;
 
 @Data
 public class AddressDto {
+    @NotBlank(message = "Detailed address is required")
     private String detailedAddress;
+
+    @NotBlank(message = "City is required")
     private String city;
+
+    @NotBlank(message = "State is required")
     private String state;
+
+    @NotBlank(message = "Pincode is required")
     private String pincode;
 
     public AddressDto() {
