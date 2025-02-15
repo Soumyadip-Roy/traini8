@@ -55,83 +55,13 @@ This project is an MVP for a registry of government-funded training centers. It 
 }
 ```
 
-**Validations:**
-- `centerName`: Required, max 40 characters
-- `centerCode`: Required, exactly 12 alphanumeric characters
-- `address`: Required (includes city, state, pincode)
-- `pincode`: 6-digit valid Indian postal code
-- `contactEmail`: Must be a valid email format
-- `contactPhone`: 10-digit valid phone number
-
-**Response:**
-```json
-{
-  "id": "65abc123456d789",
-  "centerName": "Tech Training Hub",
-  "centerCode": "ABC123XYZ456",
-  "address": {
-    "detailedAddress": "123, Main Road",
-    "city": "Mumbai",
-    "state": "Maharashtra",
-    "pincode": "400001"
-  },
-  "studentCapacity": 100,
-  "coursesOffered": ["Java", "Python"],
-  "createdOn": "1700000000",
-  "contactEmail": "info@techtraining.com",
-  "contactPhone": "9876543210"
-}
-```
-
 ### 2. Get All Training Centers
-**Endpoint:** `GET /api/training-centers`
-
-**Response:**
-```json
-[
-  {
-    "id": "65abc123456d789",
-    "centerName": "Tech Training Hub",
-    "centerCode": "ABC123XYZ456",
-    "address": {
-      "detailedAddress": "123, Main Road",
-      "city": "Mumbai",
-      "state": "Maharashtra",
-      "pincode": "400001"
-    },
-    "studentCapacity": 100,
-    "coursesOffered": ["Java", "Python"],
-    "createdOn": "1700000000",
-    "contactEmail": "info@techtraining.com",
-    "contactPhone": "9876543210"
-  }
-]
-```
-
-### 3. Filter Training Centers
-**Endpoint:** `GET /api/training-centers?city=Mumbai&state=Maharashtra&course=Java`
-
-**Response:**
-```json
-[
-  {
-    "id": "65abc123456d789",
-    "centerName": "Tech Training Hub",
-    "centerCode": "ABC123XYZ456",
-    "address": {
-      "detailedAddress": "123, Main Road",
-      "city": "Mumbai",
-      "state": "Maharashtra",
-      "pincode": "400001"
-    },
-    "studentCapacity": 100,
-    "coursesOffered": ["Java", "Python"],
-    "createdOn": "1700000000",
-    "contactEmail": "info@techtraining.com",
-    "contactPhone": "9876543210"
-  }
-]
-```
+**Endpoints:**
+- `GET http://localhost:8080/api/training-centers` → Fetch all centers
+- `GET http://localhost:8080/api/training-centers?course=go` → Fetch centers offering "go" course
+- `GET http://localhost:8080/api/training-centers?city=Bangalore` → Fetch centers in Bangalore
+- `GET http://localhost:8080/api/training-centers?state=Karnataka` → Fetch centers in Karnataka
+- `GET http://localhost:8080/api/training-centers?city=Pune&state=Maharashtra` → Fetch centers in Pune, Maharashtra
 
 ## Error Handling
 - **Validation Error:**
@@ -165,7 +95,10 @@ This project is an MVP for a registry of government-funded training centers. It 
     - `POST /api/training-centers` → Add training center
     - `GET /api/training-centers` → Fetch all centers
     - `GET /api/training-centers?city=Delhi` → Fetch filtered centers
+    - `GET /api/training-centers?course=go` → Fetch centers offering "go" course
+    - `GET /api/training-centers?city=Bangalore` → Fetch centers in Bangalore
+    - `GET /api/training-centers?state=Karnataka` → Fetch centers in Karnataka
+    - `GET /api/training-centers?city=Pune&state=Maharashtra` → Fetch centers in Pune, Maharashtra
 
-    
 ## Conclusion
 This MVP successfully implements a functional training center registry with validation, filtering, and proper error handling. Further improvements could include authentication, pagination, and advanced search features.
