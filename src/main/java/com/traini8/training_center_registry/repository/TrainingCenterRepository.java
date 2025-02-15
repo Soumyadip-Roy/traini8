@@ -6,4 +6,6 @@ import com.traini8.training_center_registry.model.TrainingCenter;
 
 @Repository
 public interface TrainingCenterRepository extends MongoRepository<TrainingCenter, String> {
+    boolean existsByCenterCode(String centerCode);
+
 }

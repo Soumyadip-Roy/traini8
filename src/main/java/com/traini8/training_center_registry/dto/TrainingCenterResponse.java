@@ -13,7 +13,7 @@ public class TrainingCenterResponse {
     private AddressDto address;
     private Integer studentCapacity;
     private List<String> coursesOffered;
-    private Long createdOn;
+    private String createdOn;
     private String contactEmail;
     private String contactPhone;
 
@@ -21,7 +21,7 @@ public class TrainingCenterResponse {
     }
 
     public TrainingCenterResponse(String id, String centerName, String centerCode, AddressDto address,
-                                  Integer studentCapacity, List<String> coursesOffered, Long createdOn,
+                                  Integer studentCapacity, List<String> coursesOffered, String createdOn,
                                   String contactEmail, String contactPhone) {
         this.id = id;
         this.centerName = centerName;
@@ -83,11 +83,11 @@ public class TrainingCenterResponse {
         this.coursesOffered = coursesOffered;
     }
 
-    public Long getCreatedOn() {
+    public String getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(Long createdOn) {
+    public void setCreatedOn(String createdOn) {
         this.createdOn = createdOn;
     }
 

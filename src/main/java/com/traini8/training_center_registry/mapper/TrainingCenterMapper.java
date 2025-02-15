@@ -20,7 +20,10 @@ public class TrainingCenterMapper {
         response.setCenterCode(trainingCenter.getCenterCode());
         response.setStudentCapacity(trainingCenter.getStudentCapacity());
         response.setCoursesOffered(trainingCenter.getCoursesOffered());
-        response.setCreatedOn(trainingCenter.getCreatedOn());
+        // Instant to ISO-8601 string
+        if (trainingCenter.getCreatedOn() != null) {
+            response.setCreatedOn(trainingCenter.getCreatedOn().toString());
+        }
         response.setContactEmail(trainingCenter.getContactEmail());
         response.setContactPhone(trainingCenter.getContactPhone());
 

@@ -2,6 +2,7 @@ package com.traini8.training_center_registry.service.impl;
 
 import java.util.List;
 
+import com.traini8.training_center_registry.exception.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.traini8.training_center_registry.dto.TrainingCenterRequest;
@@ -9,6 +10,7 @@ import com.traini8.training_center_registry.model.Address;
 import com.traini8.training_center_registry.model.TrainingCenter;
 import com.traini8.training_center_registry.repository.TrainingCenterRepository;
 import com.traini8.training_center_registry.service.TrainingCenterService;
+
 @Service
 public class TrainingCenterServiceImpl implements TrainingCenterService {
 
@@ -21,6 +23,9 @@ public class TrainingCenterServiceImpl implements TrainingCenterService {
 
     @Override
     public TrainingCenter createTrainingCenter(TrainingCenterRequest request) {
+        if (trainingCenterRepository.existsByCenterCode(request.getCenterCode())) {
+//            throw new ValidationException("Center code already exists");
+        }
 
         TrainingCenter trainingCenter = new TrainingCenter();
 
@@ -39,13 +44,16 @@ public class TrainingCenterServiceImpl implements TrainingCenterService {
         trainingCenter.setCoursesOffered(request.getCoursesOffered());
 
         // createdOn field is set by the server
-        trainingCenter.setCreatedOn(System.currentTimeMillis());
+        // trainingCenter.setCreatedOn(System.currentTimeMillis());
+        // createdOn will be auto-populated
 
         trainingCenter.setContactEmail(request.getContactEmail());
         trainingCenter.setContactPhone(request.getContactPhone());
 
         // Save the training center
-        return trainingCenterRepository.save(trainingCenter);
+        TrainingCenter x = trainingCenterRepository.save(trainingCenter);
+        System.out.println("saved");
+        return x;
     }
 
     @Override

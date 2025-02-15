@@ -4,6 +4,7 @@ import java.util.List;
 import lombok.Data;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 @Data
 public class TrainingCenterRequest {
@@ -12,17 +13,18 @@ public class TrainingCenterRequest {
     private String centerName;
 
     @NotBlank(message = "Center code is required")
-    @Pattern(regexp = "^[A-Za-z0-9]{12}$", message = "Center code must be exactly 12 alphanumeric characters")
+    @Size(min = 12, max = 12, message = "Center code must be exactly 12 characters")
+    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "Center code must be alphanumeric")
     private String centerCode;
 
     @NotNull(message = "Address is required")
     @Valid
     private AddressDto address;
 
-    @Min(value = 1, message = "Student capacity must be greater than 0")
+    @Min(value = 1, message = "Student capacity must be at least 1")
     private Integer studentCapacity;
 
-    private List<String> coursesOffered;
+    private List<@NotBlank(message = "Course name cannot be blank") String> coursesOffered;
 
     @Email(message = "Invalid email format")
     private String contactEmail;
