@@ -19,6 +19,8 @@ public class AddressDto {
             message = "Invalid pincode format")
     private String pincode;
 
+    // lombok.Data NOT working - remove later after debugging
+
     public AddressDto() {
     }
 

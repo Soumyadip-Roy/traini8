@@ -17,6 +17,8 @@ public class TrainingCenterResponse {
     private String contactEmail;
     private String contactPhone;
 
+    // lombok.Data NOT working - remove later after debugging
+
     public TrainingCenterResponse() {
     }
 

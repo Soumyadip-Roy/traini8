@@ -4,7 +4,6 @@ import java.util.List;
 import lombok.Data;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
-import org.springframework.data.mongodb.core.index.Indexed;
 
 @Data
 public class TrainingCenterRequest {
@@ -32,6 +31,8 @@ public class TrainingCenterRequest {
     @NotBlank(message = "Contact phone is required")
     @Pattern(regexp = "^\\d{10}$", message = "Phone number must be a valid 10 digit number")
     private String contactPhone;
+
+    // lombok.Data NOT working - remove later after debugging
 
     public TrainingCenterRequest() {
     }

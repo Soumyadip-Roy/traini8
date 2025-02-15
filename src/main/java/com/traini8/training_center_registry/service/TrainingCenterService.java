@@ -8,7 +8,9 @@ public interface  TrainingCenterService {
 
     TrainingCenter createTrainingCenter(TrainingCenterRequest request);
 
-    List<TrainingCenter> getAllTrainingCenters();
+//    List<TrainingCenter> getAllTrainingCenters();
+
+    List<TrainingCenter> getTrainingCentersByFilters(String city, String state, String course);
 
 
 }

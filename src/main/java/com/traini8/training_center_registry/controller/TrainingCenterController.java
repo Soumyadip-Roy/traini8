@@ -40,13 +40,29 @@ public class TrainingCenterController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    // GET API: Retrieve all training centers using the mapper
+    // GET API: Retrieve all training centers
+//    @GetMapping
+//    public ResponseEntity<List<TrainingCenterResponse>> getAllTrainingCenters() {
+//        List<TrainingCenter> centers = trainingCenterService.getAllTrainingCenters();
+//        List<TrainingCenterResponse> responses = centers.stream()
+//                .map(trainingCenterMapper::toResponseDto)
+//                .collect(Collectors.toList());
+//        return ResponseEntity.ok(responses);
+//    }
+
+    // GET API: Retrieve all training centers (with optional filters)
     @GetMapping
-    public ResponseEntity<List<TrainingCenterResponse>> getAllTrainingCenters() {
-        List<TrainingCenter> centers = trainingCenterService.getAllTrainingCenters();
+    public ResponseEntity<List<TrainingCenterResponse>> getTrainingCenters(
+            @RequestParam(required = false) String city,
+            @RequestParam(required = false) String state,
+            @RequestParam(required = false) String course
+    ) {
+        List<TrainingCenter> centers = trainingCenterService.getTrainingCentersByFilters(city, state, course);
+
         List<TrainingCenterResponse> responses = centers.stream()
                 .map(trainingCenterMapper::toResponseDto)
                 .collect(Collectors.toList());
+
         return ResponseEntity.ok(responses);
     }
 }

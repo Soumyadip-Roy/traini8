@@ -11,7 +11,6 @@ public class Address {
 
     // lombok.Data NOT working - remove later after debugging
 
-
     public Address() {
     }
 

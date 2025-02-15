@@ -26,6 +26,7 @@ public class TrainingCenter {
     private String contactPhone;
 
     // lombok.Data NOT working - remove later after debugging
+
     public TrainingCenter(){}
     public TrainingCenter(String id, String centerName, String centerCode, Address address, Integer studentCapacity, List<String> coursesOffered, Instant createdOn, String contactEmail, String contactPhone) {
         this.id = id;

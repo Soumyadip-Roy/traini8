@@ -23,9 +23,9 @@ public class TrainingCenterServiceImpl implements TrainingCenterService {
 
     @Override
     public TrainingCenter createTrainingCenter(TrainingCenterRequest request) {
-        if (trainingCenterRepository.existsByCenterCode(request.getCenterCode())) {
+//        if (trainingCenterRepository.existsByCenterCode(request.getCenterCode())) {
 //            throw new ValidationException("Center code already exists");
-        }
+//        }
 
         TrainingCenter trainingCenter = new TrainingCenter();
 
@@ -45,7 +45,7 @@ public class TrainingCenterServiceImpl implements TrainingCenterService {
 
         // createdOn field is set by the server
         // trainingCenter.setCreatedOn(System.currentTimeMillis());
-        // createdOn will be auto-populated
+        // createdOn will be auto-populated (no need to set explicitly)
 
         trainingCenter.setContactEmail(request.getContactEmail());
         trainingCenter.setContactPhone(request.getContactPhone());
@@ -56,9 +56,15 @@ public class TrainingCenterServiceImpl implements TrainingCenterService {
         return x;
     }
 
+//    @Override
+//    public List<TrainingCenter> getAllTrainingCenters() {
+//        // Retrieve all training centers from the DB
+//        return trainingCenterRepository.findAll();
+//    }
+
     @Override
-    public List<TrainingCenter> getAllTrainingCenters() {
-        // Retrieve all training centers from the DB
-        return trainingCenterRepository.findAll();
+    public List<TrainingCenter> getTrainingCentersByFilters(String city, String state, String course) {
+        // Retrieve all training centers from the DB (with optional filters)
+        return trainingCenterRepository.findByFilters(city, state, course);
     }
 }

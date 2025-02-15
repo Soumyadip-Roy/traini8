@@ -35,7 +35,7 @@ public class GlobalExceptionHandler {
     // Handle custom validation exceptions
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<ErrorResponse> handleValidationException(ValidationException ex) {
-        ErrorResponse response = new ErrorResponse("Data Conflict", ex.getMessage());
+        ErrorResponse response = new ErrorResponse("Validation Error", ex.getMessage());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
